@@ -3,5 +3,7 @@
 from assistant_creator import AssistantCreator
 
 if __name__ == "__main__":
-    explainer = AssistantCreator("EXPLAINER_API_KEY", "./explainer_prompt.txt")
+    explainer = AssistantCreator(
+        "EXPLAINER_API_KEY", "./explainer_prompt.txt", "explain"
+    )
     explainer.ask()

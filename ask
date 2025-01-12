@@ -3,5 +3,5 @@
 from assistant_creator import AssistantCreator
 
 if __name__ == "__main__":
-    chat = AssistantCreator("CHAT_API_KEY", "./chat_prompt.txt", True)
+    chat = AssistantCreator("CHAT_API_KEY", "./chat_prompt.txt", "chat", True)
     chat.ask()

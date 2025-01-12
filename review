@@ -3,5 +3,5 @@
 from assistant_creator import AssistantCreator
 
 if __name__ == "__main__":
-    reviewer = AssistantCreator("REVIEWER_API_KEY", "./reviewer_prompt.txt")
+    reviewer = AssistantCreator("REVIEWER_API_KEY", "./reviewer_prompt.txt", "review")
     reviewer.ask()
