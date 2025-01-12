@@ -5,20 +5,28 @@ from ai_assistant import AiAssistant
 
 
 class AssistantCreator:
-    def __init__(self, api_key_name: str, system_prompt_file_name: str) -> None:
+    def __init__(
+        self, api_key_name: str, system_prompt_file_name: str, interactive=False
+    ) -> None:
         load_dotenv()
 
+        self.interactive = interactive
         api_key = os.getenv(api_key_name)
         system_prompt = self.read_system_prompt(system_prompt_file_name)
 
         self.ai_assistant = AiAssistant(api_key, system_prompt)
 
     def get_input(self):
-        return (
-            sys.argv[1]
-            if len(sys.argv) > 1 and sys.argv[1]
-            else sys.stdin.read().strip()
-        )
+        if self.interactive:
+            input_data = input("🤖 >> ").strip()
+        else:
+            input_data = (
+                sys.argv[1]
+                if len(sys.argv) > 1 and sys.argv[1]
+                else sys.stdin.read().strip()
+            )
+
+        return input_data
 
     def read_system_prompt(self, file_name):
         dir = os.path.dirname(os.path.abspath(__file__))
@@ -34,5 +42,5 @@ class AssistantCreator:
         response = self.ai_assistant.ask(input)
 
         print(input)
-        print("\n========== AI response ==========\n")
+        print("\n========== 🤖 ==========\n")
         print(response)
